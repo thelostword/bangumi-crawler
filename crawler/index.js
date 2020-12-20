@@ -7,8 +7,10 @@ const router =  require('koa-router')(),
     timeLineRouter = require('./api/timeline'),
     rakuenRouter = require('./api/rakuen'),
     rakuenRouterTopic = require('./api/rakuen.topic.group'),
+    searchRouter = require('./api/search'),
     loginRouter = require('./api/login'),
     captchaRouter = require('./api/captcha'),
+    userRouter = require('./api/user'),
     collectionRouter = require('./api/collection'),
     updateRouter = require('./api/update')
 
@@ -18,8 +20,10 @@ router
 .use(rakuenRouter.routes()) //超展开
 .use(rakuenRouterTopic.routes()) //超展开话题详情
 .use(animeRankRouter.routes()) //动漫排行榜
+.use(searchRouter.routes()) //搜索
 .use(loginRouter.routes()) //登录
 .use(captchaRouter.routes()) // 验证码
+.use(userRouter.routes()) //用户信息
 .use(collectionRouter.routes()) // 收藏
 .use(updateRouter.routes()) //自动更新
 

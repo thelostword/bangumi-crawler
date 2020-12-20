@@ -20,10 +20,7 @@ timeLineRouter.get('/timeline', async ctx => {
         const $ = cheerio.load(res)
         const dateLine = $('#timeline h4.Header')
         const dateList = $('#timeline ul')
-        let resData = {
-            list: [],
-            userInfo: {}
-        }
+
         let dataList = []
 
         // 按日期循环
@@ -110,13 +107,7 @@ timeLineRouter.get('/timeline', async ctx => {
             }
             dataList.unshift(itemData)
         }
-        resData.list = dataList
-        if(request.header.token) {
-            const userNode = $('div.idBadgerNeue')
-            resData.userInfo.user_name = userNode.children('a').attr('href')
-            resData.userInfo.user_avatar = userNode.children('a').children('span').attr('style')
-        }
-        return resData
+        return dataList
     }).catch(err => {
         ctx.fail(err.message)
     })
